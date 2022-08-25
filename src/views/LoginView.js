@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import { Button } from '@mui/material';
+import '../index.css'
+import { ImWink } from 'react-icons/im';
 
 const styles = {
   form: {
@@ -11,6 +17,18 @@ const styles = {
     flexDirection: 'column',
     marginBottom: 15,
   },
+};
+
+const style = {
+  FormControl: {
+    display: 'flex',
+    marginBottom: '20px',
+    },
+    Button: {
+        display: 'block',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+    }
 };
 
 export default function LoginView() {
@@ -37,33 +55,39 @@ export default function LoginView() {
   };
 
   return (
-    <div>
-      <h1>Welcome! Please log in!</h1>
-
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-
-        <label style={styles.label}>
-          E-mail
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label style={styles.label}>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-
-        <button type="submit">Log in</button>
+    <div className='Container'>
+          <h1>Welcome! Please log in!
+                <ImWink style={{ marginLeft: 4, display: 'inline-block', padding: 20  }} />
+          </h1>
+          <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
+              <FormControl style={style.FormControl}>
+                  <InputLabel>E-mail</InputLabel>
+                  <Input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleChange}
+                  />
+              </FormControl>  
+              
+              <FormControl style={style.FormControl}>
+                  <InputLabel>Password</InputLabel>
+                  <Input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                  />
+              </FormControl>   
+              <Button style={style.Button}
+                        type="submit"
+                        variant="outlined"
+                        color="primary"
+              >
+                  Log in   
+              </Button>
       </form>
+
     </div>
   );
 }

@@ -1,21 +1,20 @@
 import React, { lazy, Suspense }from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import  authOperations  from './redux/auth/authOperations';
-// import AppBar from 'components/AppBar';
-// import ContactForm from './components/ContactForm';
-// import ContactList from './components/ContactList';
-// import RegisterView from 'views/RegisterView';
-// import LoginView from 'views/LoginView';
+import { useDispatch, useSelector } from 'react-redux';
+import authOperations from './redux/auth/authOperations';
+import PrivateRoute from './components/PrivateRoute';
+import PablicRoute from './components/PablicRoute';
+import authSelectors from './redux/auth/authSelectors';
 import AppBar from 'components/AppBar';
 import './index.css';
 
 const RegisterView = lazy(() => import("./views/RegisterView"));
 const LoginView = lazy(() => import("./views/LoginView"));
-const ContactsView = lazy(() => import("./views/ContactsView"));
 
 export default function App() {
+
+  const isRefreshing = useSelector(authSelectors.getIsFetchingCurrent);
 
   const dispatch = useDispatch();
 
@@ -25,17 +24,26 @@ export default function App() {
 
 
   return ( 
-    <>
+    !isRefreshing && (
+      <>
       <AppBar />
       <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-                {/* <Route path="/" element={<Home />} /> */}
-                {/* <Route path="/movies/:movieId" element={<MovieDetails />}> */}
-                <Route path="/register" element={<RegisterView/>} />
-                <Route path="/login" element={<LoginView/>} />
-                <Route path="/contacts" element={<ContactsView/>}/>
-            </Routes>
+      <Routes>
+          <Route path="/contacts" element={<PrivateRoute />} />  
+          <Route path="/login" element={
+            <PablicRoute restricted>
+              <LoginView/>
+            </PablicRoute>
+          } />
+
+          <Route path="/register" element={
+            <PablicRoute restricted>
+              <RegisterView/>
+            </PablicRoute>
+          } />
+        </Routes>
       </Suspense>
     </>
+    )
     )
 }

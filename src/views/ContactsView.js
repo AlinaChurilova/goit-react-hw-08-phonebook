@@ -4,10 +4,12 @@ import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import * as contactsOperations from '../redux/contactsOperations';
 import * as contactsSelectors from '../redux/contactsSelectors';
+import '../index.css';
 
 
 const barStyles = {
-  paddingLeft: 20,
+    paddingLeft: 600,
+    marginTop: 100,
 };
 
 export default function TodosView(params) {
@@ -22,7 +24,7 @@ export default function TodosView(params) {
   return (
     <>
       <div style={barStyles}>
-        <h1>Phonebook</h1>
+        <h1 className='ContactsTitle'> My Phonebook</h1>
         <ContactForm/>
         <h2>Contacts</h2>
               
