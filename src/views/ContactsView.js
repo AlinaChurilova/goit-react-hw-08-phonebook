@@ -28,7 +28,7 @@ export default function TodosView(params) {
         <ContactForm/>
         <h2>Contacts</h2>
               
-        {isLoadingContacts && <h1>Loading...</h1>}
+        {isLoadingContacts && <h2>Loading...</h2>}
         <ContactList />
         </div>
     </>

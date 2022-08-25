@@ -20,7 +20,6 @@ export const addContact = createAsyncThunk(
    async newContact => {
       try {
          const { data } = await axios.post('/contacts', newContact);
-         alert(`Contact is create!`);
          return data;
       } catch (error) {
          console.log(error.message);
