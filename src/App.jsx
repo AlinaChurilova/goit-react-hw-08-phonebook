@@ -29,7 +29,7 @@ export default function App() {
       <AppBar />
       <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-          <Route exact path="/" element={<PrivateRoute />} />  
+          {/* <Route path="/" element={<PrivateRoute />} />   */}
           <Route  path="/contacts" element={<PrivateRoute />} /> 
           <Route path="/login" element={
             <PablicRoute restricted>
