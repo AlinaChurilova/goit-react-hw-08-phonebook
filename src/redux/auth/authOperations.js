@@ -12,7 +12,6 @@ const token = {
     },
 };
 
-// ===== Создание нового пользователя =============
 
 export const signUp = createAsyncThunk(
     'auth/register', async credentials => {
@@ -26,7 +25,6 @@ export const signUp = createAsyncThunk(
     }
 )
 
-// ==== Логин =======
 
 const logIn = createAsyncThunk(
     'auth-login', async credentials => {
