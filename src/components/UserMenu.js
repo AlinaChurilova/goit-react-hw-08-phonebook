@@ -1,7 +1,7 @@
 import { ImUserTie } from 'react-icons/im';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import  authOperations  from '../redux/auth/authOperations';
-// import authSelectors from '../redux/auth/authSelectors';
+import authSelectors from '../redux/auth/authSelectors';
 
 
 const styles = {
@@ -17,7 +17,7 @@ const styles = {
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-//   const name = useSelector(authSelectors.getUserName);
+  const name = useSelector(authSelectors.getUserName);
  
 
   return (
@@ -25,7 +25,7 @@ export default function UserMenu() {
       <span>
             <ImUserTie style={{marginRight: 8}} />
             </span>
-      <span style={styles.name}>Welcome!</span>
+          <span style={styles.name}>Welcome { name}!</span>
       <button type="button" onClick={() => dispatch(authOperations.LogOut())}>
         Log out
       </button>
